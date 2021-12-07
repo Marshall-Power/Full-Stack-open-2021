@@ -22,16 +22,15 @@ const Content = (props) => {
 }
 
 const Total = (props) => {
-  const part = props['digits'];
+  const digit = props['digits'];
   return (
     <>
-      <p>Number of exercises {part['parts'][0].exercises + part['parts'][1].exercises +part['parts'][2].exercises}</p>
+      <p>Number of exercises {digit['parts'][0].exercises + digit['parts'][1].exercises + digit['parts'][2].exercises}</p>
     </>
   )
 }
 
-const Part = (props) => {
-  const part = props['part'];
+const Part = ({part}) => {
   return (
     <>
       <p>{part['name']} {part['exercises']}</p>
