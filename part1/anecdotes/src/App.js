@@ -22,19 +22,19 @@ const App = () => {
     setSelected(rand)
   }
 
-  const voteAnecdote = () => {
-    console.log(aryCopy)
-
-    aryCopy[selected] += 1
+  const voteAnecdote = (selected) => {
+    const vote = () => {
+      aryCopy[selected] += 1
     
-    console.log(aryCopy[selected])
+    }
+    return vote
   }
 
   return (
     <div>
       <p>{anecdotes[selected]} </p>
       <p>This anecdote has {aryCopy[selected]} votes</p>
-      <button onClick={voteAnecdote}>vote</button>
+      <button onClick={voteAnecdote(selected)}>vote</button>
       <button onClick={handleAnecdoteClick}>next anecdote</button>
     </div>
   )

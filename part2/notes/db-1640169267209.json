@@ -29,18 +29,6 @@
       "date": "2021-12-16T09:01:40.363Z",
       "important": true,
       "id": 5
-    },
-    {
-      "content": "a new note...",
-      "date": "2021-12-22T10:49:30.269Z",
-      "important": false,
-      "id": 6
-    },
-    {
-      "content": "where is the bug?",
-      "date": "2021-12-22T10:49:42.228Z",
-      "important": true,
-      "id": 7
     }
   ]
 }

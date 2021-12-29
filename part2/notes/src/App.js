@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Note from './components/Note'
 import noteService from './services/notes'
 
+
 const App = () => {
   
   const [notes, setNotes] = useState([])
@@ -18,16 +19,16 @@ const App = () => {
 
   useEffect(hook, [])
 
-  console.log('render', notes.length, 'notes');
+  
   
   const addNote = (event) => {
     event.preventDefault()
     
     const noteObject = {
+      id: notes.length + 1,
       content: newNote,
       date: new Date().toISOString(),
-      important: Math.random() < 0.5,
-      id: notes.length + 1
+      important: Math.random() < 0.5
     }
  
     noteService
@@ -39,6 +40,7 @@ const App = () => {
   }
 
   const handleNoteChange = (event) => {
+    event.preventDefault()
     setNewNote(event.target.value)
   }
 
@@ -68,10 +70,9 @@ const App = () => {
       <ul>
         {notesToShow.map(note => 
           <Note 
-            key={note.id} 
             note={note} 
             toggleImportance={() => toggleImportanceOf(note.id)}  
-            />
+          />
         )}
       </ul>
       <form onSubmit={addNote}>

@@ -49,24 +49,27 @@ const App = () => {
       id: persons.length + 1,
     }
 
-    let hasPerson = persons.some( person => person['name'] === nameObject['name'] )
+    //let hasPerson = persons.some( person => person['name'] === nameObject['name'] )
     
-    if(!hasPerson) {
-      personService
-      .create(nameObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-        setNewSearch('')
-        setErrorMessage(`${returnedPerson.name} has been added`)
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      })
+    personService
+    .create(nameObject)
+    .then(returnedPerson => {
+      setPersons(persons.concat(returnedPerson))
+      setNewSearch('')
+      setErrorMessage(`${returnedPerson.name} has been added`)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000) 
       setNewName('') 
       setNewNumber('') 
-    } else {
-      alert(`${newName} is already added to the phonebook`)
-    }
+    })
+    .catch(error => {
+      setErrorMessage(JSON.stringify(error.response.data.error.errors.message))
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 10000)
+      console.log(error.response.data);
+    })
   }
 
   
