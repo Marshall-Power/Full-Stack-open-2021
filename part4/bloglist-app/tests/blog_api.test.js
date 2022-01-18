@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
+
 const supertest = require('supertest')
 const app = require('../app')
 
 const api = supertest(app)
 const Blog = require('../models/blog')
+
 const initialBlogs = [
     {
         "title":"A Complete Guide to Flexbox",
@@ -18,6 +20,8 @@ const initialBlogs = [
         "likes":'12'
     }
 ]
+
+
 
 beforeEach(async () => {
   await Blog.deleteMany({})

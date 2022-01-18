@@ -16,7 +16,11 @@ const blogSchema = new mongoose.Schema({
     required: true,
     minlength: 5
   },
-  likes: Number
+  likes: Number,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 const Blog = mongoose.model('Blog', blogSchema)

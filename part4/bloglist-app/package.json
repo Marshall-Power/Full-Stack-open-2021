@@ -11,11 +11,13 @@
   "author": "Marcel Planas",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.4"
+    "mongoose": "^6.1.4",
+    "mongoose-unique-validator": "2.0.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

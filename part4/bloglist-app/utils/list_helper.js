@@ -1,3 +1,8 @@
+const usersInDb = async () => {
+    const users = await User.find({})
+    return users.map(u => u.toJSON())
+  }
+
 const dummy = (blogs) => {
     return 1
 }
@@ -24,5 +29,6 @@ const favoriteBlog = blogs => {
 module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog
+    favoriteBlog,
+    usersInDb
 }
