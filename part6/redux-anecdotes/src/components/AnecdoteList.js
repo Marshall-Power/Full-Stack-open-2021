@@ -1,19 +1,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { voteAnecdote } from '../reducers/anecdoteReducer'
-import { votedNotification, removeNotification } from '../reducers/notificationReducer'
+import { addVote } from '../reducers/anecdoteReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
-const AnecdoteForm = () => {
+const AnecdoteList = () => {
     const anecdotes = useSelector(state => state.anecdotes)
     const dispatch = useDispatch()
 
     const vote = (id, content) => {
         console.log('vote', id)
-        dispatch(voteAnecdote(id))
-        dispatch(votedNotification(content))
-        setTimeout(() => {
-            dispatch(removeNotification())
-        }, 5000)
+        dispatch(addVote(id))
+        dispatch(setNotification(`you voted '${content}'`, 5000))
       }
 
     return (
@@ -21,10 +18,7 @@ const AnecdoteForm = () => {
             {anecdotes.map(anecdote =>
                 <div key={anecdote.id}>
                 <div>
-                    {anecdote.content}
-                </div>
-                <div>
-                    has {anecdote.votes}
+                    {anecdote.content} has {anecdote.votes} votes
                     <button onClick={() => vote(anecdote.id, anecdote.content)}>vote</button>
                 </div>
                 </div>
@@ -33,4 +27,4 @@ const AnecdoteForm = () => {
     )
 }
 
-export default AnecdoteForm
+export default AnecdoteList

@@ -3,12 +3,12 @@
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
-      "votes": 2
+      "votes": 20
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
       "id": "21149",
-      "votes": 0
+      "votes": 8
     },
     {
       "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
@@ -23,7 +23,7 @@
     {
       "content": "Premature optimization is the root of all evil.",
       "id": "25170",
-      "votes": 0
+      "votes": 2
     },
     {
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
@@ -32,38 +32,58 @@
     },
     {
       "content": "Running in the wild",
-      "votes": 0,
+      "votes": 7,
       "id": "72738"
     },
     {
       "content": "this is a test",
-      "votes": 0,
+      "votes": 7,
       "id": "24303"
     },
     {
       "content": "this is a testasdasd",
-      "votes": 1,
+      "votes": 4,
       "id": "80249"
     },
     {
       "content": "I am learning React",
-      "votes": 3,
+      "votes": 5,
       "id": "35881"
     },
     {
       "content": "I got a new house",
-      "votes": 2,
+      "votes": 4,
       "id": "35422"
     },
     {
       "content": "Hesitation is defeat",
-      "votes": 5,
+      "votes": 6,
       "id": "89477"
     },
     {
       "content": "Sekiro is great",
-      "votes": 2,
+      "votes": 8,
       "id": "8258"
+    },
+    {
+      "content": "This streamer is great",
+      "votes": 2,
+      "id": "57317"
+    },
+    {
+      "content": "I missed the notification",
+      "votes": 4,
+      "id": "14442"
+    },
+    {
+      "content": "Today I'll finish Redux",
+      "votes": 4,
+      "id": "77165"
+    },
+    {
+      "content": "Last redux exercice",
+      "votes": 5,
+      "id": "74959"
     }
   ]
 }

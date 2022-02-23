@@ -9,6 +9,11 @@
       "content": "state changes are made with actions",
       "important": false,
       "id": 2
+    },
+    {
+      "content": "This is a new note",
+      "important": false,
+      "id": 3
     }
   ]
 }
