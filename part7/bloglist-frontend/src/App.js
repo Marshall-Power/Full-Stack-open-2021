@@ -18,7 +18,7 @@ const App = () => {
 
     useEffect(() => {
         blogService.getAll().then(blogs =>
-            setBlogs( blogs.sort((a, b) => (a.likes > b.likes) ? -1 : 1) )
+            setBlogs( blogs )
         )
     }, [])
 
@@ -110,40 +110,6 @@ const App = () => {
             })
     }
 
-    const addLike = (id, blogObject) => {
-        blogService
-            .update(id, blogObject)
-            .then(returnedBlog => {
-                console.log(returnedBlog)
-                setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
-            })
-            .catch(error => {
-                setErrorMessage(
-                    `Blog '${blogObject.title}' was already removed from server`
-                )
-                setTimeout(() => {
-                    setErrorMessage(error)
-                }, 5000)
-            })
-    }
-
-    const deleteBlog = (id) => {
-        blogService
-            .remove(id)
-            .then(returnedBlog => {
-                console.log(returnedBlog)
-                setBlogs(blogs.filter((blog) => blog.id !== id))
-            })
-            .catch(error => {
-                setErrorMessage(
-                    'Blog was already removed from server'
-                )
-                setTimeout(() => {
-                    setErrorMessage(error)
-                }, 5000)
-            })
-    }
-
     return (
         <div>
             <Notification message={errorMessage} />
@@ -160,7 +126,7 @@ const App = () => {
                       {blogForm()}
                   </div>
                   {blogs.map(blog =>
-                      <Blog key={blog.id} blog={blog} upvote={addLike} removeBlog={deleteBlog}/>
+                      <Blog key={blog.id} blog={blog} />
                   )}
               </div>
             }
