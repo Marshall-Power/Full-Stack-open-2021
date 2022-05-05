@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import blogService from '../services/blogs'
+import { addNewBlog } from '../reducers/blogsReducer'
 
-const BlogForm = ({ createBlog }) => {
+const BlogForm = () => {
     const [newTitle, setNewTitle] = useState('')
     const [newAuthor, setNewAuthor] = useState('')
     const [newUrl, setNewUrl] = useState('')
+
+    const dispatch = useDispatch()
+    //const blogFormRef = useRef()
 
     const handleTitleChange = (event) => {
         console.log(event.target.value)
@@ -21,14 +26,19 @@ const BlogForm = ({ createBlog }) => {
         setNewUrl(event.target.value)
     }
 
-    const addBlog = (event) => {
+
+    const createBlog = async (event) => {
         event.preventDefault()
-        createBlog({
+        //blogFormRef.current.toggleVisibility()
+        const content = {
             title: newTitle,
             author: newAuthor,
             url: newUrl,
             likes: 0
-        })
+        }
+
+        const newBlog = await blogService.create(content)
+        dispatch(addNewBlog(newBlog))
 
         setNewTitle('')
         setNewAuthor('')
@@ -36,7 +46,7 @@ const BlogForm = ({ createBlog }) => {
     }
 
     return (
-        <form onSubmit={addBlog}>
+        <form onSubmit={createBlog}>
             <label>title:</label>
             <input
                 id='title-input'
@@ -63,8 +73,6 @@ const BlogForm = ({ createBlog }) => {
     )
 }
 
-BlogForm.propTypes = {
-    createBlog: PropTypes.func.isRequired
-}
+
 
 export default BlogForm

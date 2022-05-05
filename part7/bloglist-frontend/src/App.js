@@ -1,15 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Blog from './components/Blog'
+import Blogs from './components/Blogs'
 import BlogForm from './components/BlogForm'
 import Togglable from './components/Togglable'
 import Notification from './components/Notification'
 import blogService from './services/blogs'
-import loginService from './services/login'
+import { setBlogs } from './reducers/blogsReducer'
+import { setNotification } from './reducers/notificationsReducer'
+import { login, logout } from './reducers/loginReducer'
+import { useDispatch } from 'react-redux'
+// import {
+//     BrowserRouter as Router,
+//     Routes, Route, Link
+// } from 'react-router-dom'
 import './index.css'
+//import { objectOf } from 'prop-types'
 
 const App = () => {
-    const [blogs, setBlogs] = useState([])
-    const [errorMessage, setErrorMessage] = useState(null)
+
+    const dispatch = useDispatch()
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
@@ -17,10 +26,9 @@ const App = () => {
     const blogFormRef = useRef()
 
     useEffect(() => {
-        blogService.getAll().then(blogs =>
-            setBlogs( blogs.sort((a, b) => (a.likes > b.likes) ? -1 : 1) )
-        )
-    }, [])
+        blogService
+            .getAll().then(blogs => dispatch(setBlogs(blogs)))
+    }, [dispatch])
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
@@ -35,22 +43,16 @@ const App = () => {
         event.preventDefault()
 
         try {
-            const user = await loginService.login({
+            dispatch(login({
                 username, password,
-            })
+            }))
 
-            window.localStorage.setItem(
-                'loggedBlogappUser', JSON.stringify(user)
-            )
 
             setUser(user)
             setUsername('')
             setPassword('')
         } catch (exception) {
-            setErrorMessage('Wrong credentials')
-            setTimeout(() => {
-                setErrorMessage(null)
-            }, 5000)
+            dispatch(setNotification('Wrong credentials', 5000))
         }
 
         console.log('logging in with', username, password)
@@ -59,8 +61,7 @@ const App = () => {
     const handleLogout = async (event) => {
         event.preventDefault()
 
-        window.localStorage.removeItem('loggedBlogappUser')
-        setUser(null)
+        dispatch(logout())
 
         console.log('logging out')
     }
@@ -97,56 +98,15 @@ const App = () => {
 
     const blogForm = () => (
         <Togglable buttonLabel='new blog' ref={blogFormRef}>
-            <BlogForm createBlog={addBlog} />
+            <BlogForm/>
         </Togglable>
     )
 
-    const addBlog = (blogObject) => {
-        blogFormRef.current.toggleVisibility()
-        blogService
-            .create(blogObject)
-            .then(returnedBlog => {
-                setBlogs(blogs.concat(returnedBlog))
-            })
-    }
-
-    const addLike = (id, blogObject) => {
-        blogService
-            .update(id, blogObject)
-            .then(returnedBlog => {
-                console.log(returnedBlog)
-                setBlogs(blogs.map(blog => blog.id !== id ? blog : returnedBlog))
-            })
-            .catch(error => {
-                setErrorMessage(
-                    `Blog '${blogObject.title}' was already removed from server`
-                )
-                setTimeout(() => {
-                    setErrorMessage(error)
-                }, 5000)
-            })
-    }
-
-    const deleteBlog = (id) => {
-        blogService
-            .remove(id)
-            .then(returnedBlog => {
-                console.log(returnedBlog)
-                setBlogs(blogs.filter((blog) => blog.id !== id))
-            })
-            .catch(error => {
-                setErrorMessage(
-                    'Blog was already removed from server'
-                )
-                setTimeout(() => {
-                    setErrorMessage(error)
-                }, 5000)
-            })
-    }
 
     return (
         <div>
-            <Notification message={errorMessage} />
+            <Notification/>
+
             { user === null && loginForm() }
 
             { user !== null &&
@@ -159,9 +119,8 @@ const App = () => {
                   <div>
                       {blogForm()}
                   </div>
-                  {blogs.map(blog =>
-                      <Blog key={blog.id} blog={blog} upvote={addLike} removeBlog={deleteBlog}/>
-                  )}
+
+                  <Blogs/>
               </div>
             }
         </div>

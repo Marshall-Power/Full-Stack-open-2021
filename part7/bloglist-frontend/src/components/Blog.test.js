@@ -1,9 +1,9 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
-import Blog from './Blog'
+import Blogs from './Blogs'
 
-test('Renders title and author but not url and likes', () => {
+test('Renders title,author, likes but not url', () => {
     const blog = {
         title: 'A Complete Guide to Flexbox',
         author: 'Chris Coyier',
@@ -12,7 +12,7 @@ test('Renders title and author but not url and likes', () => {
     }
 
     const component = render(
-        <Blog blog={blog} />
+        <Blogs blog={blog} />
     )
 
     expect(component.container).toHaveTextContent(
@@ -20,6 +20,10 @@ test('Renders title and author but not url and likes', () => {
     )
 
     expect(component.container).not.toHaveTextContent(
-        'https://css-tricks.com/snippets/css/a-guide-to-flexbox/ 24'
+        'https://css-tricks.com/snippets/css/a-guide-to-flexbox/'
+    )
+
+    expect(component.container).toHaveTextContent(
+        '24'
     )
 })
