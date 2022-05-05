@@ -3,16 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@reduxjs/toolkit": "^1.8.0",
+=======
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
     "@testing-library/user-event": "^12.6.3",
     "axios": "^0.21.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+<<<<<<< HEAD
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "4.0.1",
     "redux": "^4.1.2",
+=======
+    "react-scripts": "4.0.1",
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -46,9 +53,14 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "cypress": "^9.4.1",
+<<<<<<< HEAD
     "deep-freeze": "^0.0.1",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-jest": "^24.7.0",
     "jest": "^26.6.0"
+=======
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^24.7.0"
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
   }
 }

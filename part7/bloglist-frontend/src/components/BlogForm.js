@@ -1,16 +1,25 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux'
 import blogService from '../services/blogs'
 import { addNewBlog } from '../reducers/blogsReducer'
 
 const BlogForm = () => {
+=======
+import PropTypes from 'prop-types'
+
+const BlogForm = ({ createBlog }) => {
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
     const [newTitle, setNewTitle] = useState('')
     const [newAuthor, setNewAuthor] = useState('')
     const [newUrl, setNewUrl] = useState('')
 
+<<<<<<< HEAD
     const dispatch = useDispatch()
     //const blogFormRef = useRef()
 
+=======
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
     const handleTitleChange = (event) => {
         console.log(event.target.value)
         setNewTitle(event.target.value)
@@ -26,6 +35,7 @@ const BlogForm = () => {
         setNewUrl(event.target.value)
     }
 
+<<<<<<< HEAD
 
     const createBlog = async (event) => {
         event.preventDefault()
@@ -39,6 +49,15 @@ const BlogForm = () => {
 
         const newBlog = await blogService.create(content)
         dispatch(addNewBlog(newBlog))
+=======
+    const addBlog = (event) => {
+        event.preventDefault()
+        createBlog({
+            title: newTitle,
+            author: newAuthor,
+            url: newUrl
+        })
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
 
         setNewTitle('')
         setNewAuthor('')
@@ -46,7 +65,11 @@ const BlogForm = () => {
     }
 
     return (
+<<<<<<< HEAD
         <form onSubmit={createBlog}>
+=======
+        <form onSubmit={addBlog}>
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
             <label>title:</label>
             <input
                 id='title-input'
@@ -73,6 +96,12 @@ const BlogForm = () => {
     )
 }
 
+<<<<<<< HEAD
 
+=======
+BlogForm.propTypes = {
+    createBlog: PropTypes.func.isRequired
+}
+>>>>>>> 734f0812f77045fe1fb8cd831cc3219d1d856eb8
 
 export default BlogForm
