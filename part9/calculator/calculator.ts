@@ -16,12 +16,12 @@ const calculator = (a: number, b: number, op : Operation) : Result => {
     default:
       throw new Error('Invalid operation');
   }
-}
+};
 
 try {
   console.log(calculator(1, 5 , 'divide'));
 } catch (error: unknown) {
-  let errorMessage = 'Something went wrong.'
+  let errorMessage = 'Something went wrong.';
   if (error instanceof Error) {
     errorMessage += ' Error: ' + error.message;
   }
@@ -29,3 +29,6 @@ try {
 }
 
 console.log(process.argv);
+
+
+export default calculator;
