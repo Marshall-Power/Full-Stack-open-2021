@@ -11,6 +11,9 @@ const calculateBmi = (height: number, weight: number): string => {
     } else {
         return 'Obese';
     }
-}
+};
 
-console.log(calculateBmi(180, 75));
+const a = Number(process.argv[2]);
+const b = Number(process.argv[3]);
+
+console.log(calculateBmi(a, b));
